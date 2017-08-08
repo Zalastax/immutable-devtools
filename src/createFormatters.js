@@ -50,8 +50,8 @@ export default function createFormatter(Immutable) {
       if (!changed) {
         inlinePreview = ['span', inlineValuesStyle, '{}'];
       } else {
-        const preview = record
-          .keySeq()
+        const preview = Immutable.Seq(record
+        ._keys)
           .reduce((preview, key) => {
             if (Immutable.is(defaults.get(key), record.get(key)))
               return preview;
@@ -71,11 +71,11 @@ export default function createFormatter(Immutable) {
         ' ', inlinePreview
       ];
     },
-    hasBody,
+    hasBody: (collection, config) => !(config && config.noPreview) && collection._values.some(v => v !== undefined),
     body(record) {
       const defaults = record.clear();
-      const children = record
-        .keySeq()
+      const children = Immutable.Seq(record
+        ._keys)
         .map(key => {
           const style = Immutable.is(defaults.get(key), record.get(key))
             ? defaultValueKeyStyle : alteredValueKeyStyle;

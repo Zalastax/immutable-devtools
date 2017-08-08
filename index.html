@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>Immutable DevTools Demo</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.6/immutable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.0.0-rc.2/immutable.js"></script>
     <script src="dist/index.js"></script>
     <script id="demoScript">
       var MyRecord = Immutable.Record({
@@ -10,7 +10,7 @@
         a: 'A',
         b: Immutable.List([1,2,,null,5]),
         c: Immutable.Map({key1: {item1: null}}).set({obj: 'ref'}, 'value'),
-        set: Immutable.Set(['Beer', 'Water']),
+        imset: Immutable.Set(['Beer', 'Water']),
         stack: Immutable.Stack(['item0', 'item1'])
       }, 'MyRecord');
       console.log('It\'s hard without Immutable DevTools:', MyRecord());
